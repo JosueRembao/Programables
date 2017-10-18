@@ -39,11 +39,11 @@ start bsf status,RP0 ;Selecciona el banco 1 de memoria
 ;	goto loop
 
 ;Practica
-loop portb,0
-	call delay250
-	bcf portb,0
-	call delay250
-	goto loop
+loop 	portb,0
+		call delay250
+		bcf portb,0
+		call delay250
+		goto loop
 
 delay250	movlw D'50'
 			movwf delcntrl1
