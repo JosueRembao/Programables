@@ -1,0 +1,135 @@
+MPASM  5.50                  SECUENCIADOR.ASM   10-23-2017  9:52:44         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002     LIST P=16F84A
+Error[105]  : Cannot open file (Include File "p16F84A.inq" not found)
+                      00003     INCLUDE "p16F84A.inq"
+                      00004     ;list p=16F84A
+                      00005 
+Warning[207]: Found label after column 1. (DELCNTRL1)
+  0000000C            00006     DELCNTRL1 EQU 0C    
+                      00007 
+0000                  00008     ORG 00
+                      00009 
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (RP0)
+0000   1400           00010 INICIO  BSF STATUS, RP0;Cambio a banco1
+0001   3010           00011         MOVLW B'00010000'
+Error[113]  : Symbol not previously defined (TRISA)
+0002   0080           00012         MOVWF TRISA
+0003   30FF           00013         MOVLW 0FF
+Error[113]  : Symbol not previously defined (TRISB)
+0004   0080           00014         MOVWF TRISB
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (RP0)
+0005   1000           00015         BCF STATUS,RP0
+                      00016 
+                      00017 
+0006                  00018 FASEA 
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA0)
+0006   1400           00019     BSF PORTA, RA0; prueba el terminal del puerto A
+0007   201B           00020         CALL DELAY
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA0)
+0008   1000           00021     BCF PORTA,RA0
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA4)
+0009   1C00           00022     BTFSS PORTA,RA4
+000A   2815           00023     GOTO FASED
+000B                  00024 FASEB
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA1)
+000B   1400           00025     BSF PORTA, RA1
+000C   201B           00026     CALL DELAY
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA1)
+000D   1000           00027         BCF PORTA, RA1
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA4)
+000E   1C00           00028         BTFSS PORTA,RA4
+000F   2806           00029         GOTO FASEA
+0010                  00030 FASEC
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA2)
+0010   1400           00031     BSF PORTA, RA2
+MPASM  5.50                  SECUENCIADOR.ASM   10-23-2017  9:52:44         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0011   201B           00032     CALL DELAY
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA2)
+0012   1000           00033         BCF PORTA, RA2
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA4)
+0013   1C00           00034         BTFSS PORTA,RA4
+0014   280B           00035     GOTO FASEB
+0015                  00036 FASED
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA3)
+0015   1400           00037     BSF PORTA, RA3
+0016   201B           00038     CALL DELAY
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA3)
+0017   1000           00039         BCF PORTA, RA3
+Error[113]  : Symbol not previously defined (PORTA)
+Error[113]  : Symbol not previously defined (RA4)
+0018   1C00           00040         BTFSS PORTA,RA4
+0019   2810           00041     GOTO FASEC
+001A   2806           00042     GOTO FASEA
+                      00043 
+                      00044 
+001B                  00045 DELAY 
+Error[113]  : Symbol not previously defined (PORTB)
+001B   0800           00046         MOVF PORTB, 0
+Error[113]  : Symbol not previously defined (VARIABLE)
+001C   0080           00047         MOVWF VARIABLE
+001D                  00048 DEL             
+001D   0000           00049                 NOP
+001E   0000           00050                 NOP
+Error[113]  : Symbol not previously defined (VARIABLE)
+001F   0B80           00051                 DECFSZ  VARIABLE,1
+0020   281D           00052                 GOTO DEL
+0021   0008           00053                 RETURN; usa dos ciclos de instruccion 
+                      00054 
+                      00055         END
+MPASM  5.50                  SECUENCIADOR.ASM   10-23-2017  9:52:44         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DEL                               0000001D
+DELAY                             0000001B
+DELCNTRL1                         0000000C
+FASEA                             00000006
+FASEB                             0000000B
+FASEC                             00000010
+FASED                             00000015
+INICIO                            00000000
+__16F84A                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XX-------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    34
+Program Memory Words Free:   990
+
+
+Errors   :    34
+Warnings :     1 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
